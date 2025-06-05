@@ -34,30 +34,84 @@
     .quiz-container {
       background-color: var(--aip-white);
       color: var(--aip-navy-blue);
-      padding: 2rem;
+      padding: 0;
       border-radius: 10px;
       max-width: 800px;
       margin: 0 auto;
       min-height: 400px;
       box-shadow: 0 4px 6px rgba(45, 54, 72, 0.1);
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
 
     .question-page {
       display: none;
-      animation: fadeIn 0.3s ease-in;
       flex: 1;
       flex-direction: column;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 2rem;
+      box-sizing: border-box;
     }
 
     .question-page.active {
       display: flex;
+      animation: slideInRight 0.4s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .question-page.slide-out-left {
+      animation: slideOutLeft 0.4s ease-in;
+    }
+
+    .question-page.slide-out-right {
+      animation: slideOutRight 0.4s ease-in;
+    }
+
+    @keyframes slideInRight {
+      from { 
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from { 
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to { 
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideOutLeft {
+      from { 
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to { 
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes slideOutRight {
+      from { 
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to { 
+        transform: translateX(100%);
+        opacity: 0;
+      }
     }
 
     .question {
@@ -102,18 +156,41 @@
       background-color: var(--aip-cream);
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      transition: all 0.3s ease;
       text-align: center;
       font-size: 0.85rem;
       border: 1px solid var(--aip-mustard);
+      transform: scale(1);
     }
 
     label:hover {
       background-color: var(--aip-mustard);
+      transform: scale(1.02);
+      box-shadow: 0 2px 8px rgba(253, 195, 94, 0.3);
+    }
+
+    label:has(input:checked) {
+      background-color: var(--aip-burnt-orange);
+      color: var(--aip-white);
+      border-color: var(--aip-burnt-orange);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(204, 99, 62, 0.4);
     }
 
     label input[type="radio"] {
       margin-bottom: 0.5rem;
+      transform: scale(1.2);
+      accent-color: var(--aip-burnt-orange);
+    }
+
+    label input[type="radio"]:checked {
+      animation: radio-pulse 0.3s ease;
+    }
+
+    @keyframes radio-pulse {
+      0% { transform: scale(1.2); }
+      50% { transform: scale(1.6); }
+      100% { transform: scale(1.2); }
     }
 
     .navigation {
@@ -127,6 +204,43 @@
     .progress {
       color: var(--aip-burnt-orange);
       font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .progress-bar-container {
+      width: 200px;
+      height: 6px;
+      background-color: var(--aip-cream);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--aip-mustard), var(--aip-burnt-orange));
+      border-radius: 3px;
+      transition: width 0.5s ease;
+      position: relative;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: progress-shine 2s ease-in-out infinite;
+    }
+
+    @keyframes progress-shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     button {
@@ -137,18 +251,40 @@
       color: var(--aip-white);
       cursor: pointer;
       border-radius: 5px;
-      transition: opacity 0.2s ease;
+      transition: all 0.3s ease;
+      transform: scale(1);
+      box-shadow: 0 2px 4px rgba(204, 99, 62, 0.2);
+    }
+
+    button:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(204, 99, 62, 0.3);
+      background-color: #d4714a;
+    }
+
+    button:active:not(:disabled) {
+      transform: scale(0.98);
+      transition: all 0.1s ease;
     }
 
     button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      transform: scale(1);
+      box-shadow: none;
     }
 
     button.secondary {
       background-color: transparent;
       color: var(--aip-navy-blue);
       border: 2px solid var(--aip-navy-blue);
+      box-shadow: 0 2px 4px rgba(45, 54, 72, 0.1);
+    }
+
+    button.secondary:hover:not(:disabled) {
+      background-color: var(--aip-navy-blue);
+      color: var(--aip-white);
+      box-shadow: 0 4px 8px rgba(45, 54, 72, 0.2);
     }
 
     .result {
@@ -157,6 +293,21 @@
       font-weight: bold;
       text-align: center;
       color: var(--aip-burnt-orange);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .result.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: result-bounce 0.6s ease;
+    }
+
+    @keyframes result-bounce {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-5px) scale(1.05); }
+      100% { transform: translateY(0) scale(1); }
     }
 
     #restart-btn {
@@ -183,6 +334,68 @@
       max-width: 600px;
       height: auto;
     }
+
+    /* Confetti Animation */
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 6px;
+      background: var(--aip-mustard);
+      pointer-events: none;
+      border-radius: 2px;
+    }
+
+    .confetti.rectangle {
+      width: 8px;
+      height: 12px;
+      background: var(--aip-burnt-orange);
+    }
+
+    .confetti.square {
+      width: 8px;
+      height: 8px;
+      background: var(--aip-navy-blue);
+      border-radius: 1px;
+    }
+
+    .confetti.triangle {
+      width: 0;
+      height: 0;
+      background: transparent;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 8px solid var(--aip-cream);
+      border-radius: 0;
+    }
+
+    @keyframes confetti-burst {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+        scale: 1;
+      }
+      50% {
+        opacity: 1;
+        scale: 1.1;
+      }
+      100% {
+        opacity: 0;
+        scale: 0.8;
+      }
+    }
+
+    .score-counter {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--aip-burnt-orange);
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .results-celebration {
+      position: relative;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -194,9 +407,10 @@
     <form id="quiz-form">
       <!-- Question pages will be generated by JavaScript -->
       
-      <div class="question-page" id="results-page">
+      <div class="question-page results-celebration" id="results-page">
         <div class="question">
           <h2>Your Results</h2>
+          <div class="score-counter" id="score-counter">0%</div>
           <div id="result" class="result"></div>
           <button type="button" id="restart-btn" onclick="location.reload()">Take Quiz Again</button>
         </div>
@@ -289,7 +503,12 @@
             </div>
           </div>
           <div class="navigation">
-            <div class="progress">${i} / ${totalQuestions}</div>
+            <div class="progress">
+              <span>${i} / ${totalQuestions}</span>
+              <div class="progress-bar-container">
+                <div class="progress-bar" style="width: ${(i / totalQuestions) * 100}%"></div>
+              </div>
+            </div>
             <div>
               <button type="button" class="prev-btn secondary"${i === 1 ? ' disabled' : ''}>Back</button>
               ${i === totalQuestions ? 
@@ -304,38 +523,69 @@
       }
     }
 
-    function showQuestion(questionNum) {
-      document.querySelectorAll('.question-page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.querySelector(`[data-question="${questionNum}"]`).classList.add('active');
+    function showQuestion(questionNum, direction = 'forward') {
+      const currentActive = document.querySelector('.question-page.active');
+      const nextPage = document.querySelector(`[data-question="${questionNum}"]`);
       
-      // Update question content from quizData
-      const currentPage = document.querySelector(`[data-question="${questionNum}"]`);
-      const questionData = quizData[questionNum];
-      
-      if (questionData) {
-        const questionTitle = currentPage.querySelector('h2');
-        const explainerText = currentPage.querySelector('.explainer');
+      if (currentActive && currentActive !== nextPage) {
+        // Slide out current page
+        const slideOutClass = direction === 'forward' ? 'slide-out-left' : 'slide-out-right';
+        currentActive.classList.add(slideOutClass);
         
-        if (questionTitle) questionTitle.textContent = questionData.question;
-        if (explainerText) explainerText.innerHTML = questionData.explainer;
+        setTimeout(() => {
+          currentActive.classList.remove('active', slideOutClass);
+        }, 400);
       }
       
-      // Update navigation buttons in current page
-      const prevBtn = currentPage.querySelector('.prev-btn');
-      const nextBtn = currentPage.querySelector('.next-btn');
-      const submitBtn = currentPage.querySelector('.submit-btn');
-      
-      if (prevBtn) prevBtn.disabled = questionNum === 1;
-      
-      if (questionNum === totalQuestions) {
-        if (nextBtn) nextBtn.style.display = 'none';
-        if (submitBtn) submitBtn.style.display = 'inline-block';
-      } else {
-        if (nextBtn) nextBtn.style.display = 'inline-block';
-        if (submitBtn) submitBtn.style.display = 'none';
-      }
+      // Slide in new page
+      setTimeout(() => {
+        document.querySelectorAll('.question-page').forEach(page => {
+          page.classList.remove('active');
+        });
+        
+        nextPage.classList.add('active');
+        
+        // Set the correct slide-in animation
+        if (direction === 'forward') {
+          nextPage.style.animation = 'slideInRight 0.4s ease-out';
+        } else {
+          nextPage.style.animation = 'slideInLeft 0.4s ease-out';
+        }
+        
+        // Update question content from quizData
+        const questionData = quizData[questionNum];
+        
+        if (questionData) {
+          const questionTitle = nextPage.querySelector('h2');
+          const explainerText = nextPage.querySelector('.explainer');
+          
+          if (questionTitle) questionTitle.textContent = questionData.question;
+          if (explainerText) explainerText.innerHTML = questionData.explainer;
+        }
+        
+        // Update navigation buttons in current page
+        const prevBtn = nextPage.querySelector('.prev-btn');
+        const nextBtn = nextPage.querySelector('.next-btn');
+        const submitBtn = nextPage.querySelector('.submit-btn');
+        const progressBar = nextPage.querySelector('.progress-bar');
+        
+        if (prevBtn) prevBtn.disabled = questionNum === 1;
+        
+        // Animate progress bar
+        if (progressBar) {
+          setTimeout(() => {
+            progressBar.style.width = `${(questionNum / totalQuestions) * 100}%`;
+          }, 100);
+        }
+        
+        if (questionNum === totalQuestions) {
+          if (nextBtn) nextBtn.style.display = 'none';
+          if (submitBtn) submitBtn.style.display = 'inline-block';
+        } else {
+          if (nextBtn) nextBtn.style.display = 'inline-block';
+          if (submitBtn) submitBtn.style.display = 'none';
+        }
+      }, currentActive ? 200 : 0);
     }
 
     function checkAnswer() {
@@ -363,7 +613,7 @@
       if (e.target.classList.contains('prev-btn')) {
         if (currentQuestion > 1) {
           currentQuestion--;
-          showQuestion(currentQuestion);
+          showQuestion(currentQuestion, 'backward');
           checkAnswer();
         }
       }
@@ -371,11 +621,68 @@
       if (e.target.classList.contains('next-btn')) {
         if (currentQuestion < totalQuestions) {
           currentQuestion++;
-          showQuestion(currentQuestion);
+          showQuestion(currentQuestion, 'forward');
           checkAnswer();
         }
       }
     });
+
+    // Confetti generation
+    function createConfetti() {
+      const resultsPage = document.getElementById('results-page');
+      const confettiCount = 60;
+      const centerX = resultsPage.offsetWidth / 2;
+      const centerY = resultsPage.offsetHeight / 2;
+      
+      const shapes = ['', 'rectangle', 'square', 'triangle'];
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        confetti.className = `confetti ${shape}`;
+        
+        // Start from center
+        confetti.style.left = centerX + 'px';
+        confetti.style.top = centerY + 'px';
+        
+        // Random burst direction and distance
+        const angle = (Math.random() * 360) * (Math.PI / 180);
+        const velocity = Math.random() * 200 + 100; // Distance from center
+        const finalX = centerX + (Math.cos(angle) * velocity);
+        const finalY = centerY + (Math.sin(angle) * velocity);
+        
+        // Random rotation
+        const rotation = Math.random() * 720 - 360;
+        
+        // Set animation
+        confetti.style.animation = `confetti-burst ${Math.random() * 0.5 + 1.5}s ease-out forwards`;
+        confetti.style.transform = `translate(${finalX - centerX}px, ${finalY - centerY}px) rotate(${rotation}deg)`;
+        
+        resultsPage.appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+          if (confetti.parentNode) {
+            confetti.parentNode.removeChild(confetti);
+          }
+        }, 2500);
+      }
+    }
+
+    // Score counter animation
+    function animateScore(targetScore) {
+      const counter = document.getElementById('score-counter');
+      let currentScore = 0;
+      const increment = targetScore / 50;
+      const timer = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+          currentScore = targetScore;
+          clearInterval(timer);
+        }
+        counter.textContent = Math.round(currentScore) + '%';
+      }, 30);
+    }
 
     // Form submission
     document.getElementById('quiz-form').addEventListener('submit', function(event) {
@@ -399,7 +706,17 @@
         page.classList.remove('active');
       });
       document.getElementById('results-page').classList.add('active');
-      document.getElementById('result').innerHTML = `🎯 You're <strong>${score}% AI-positive</strong>!`;
+      
+      // Start celebrations
+      setTimeout(() => {
+        createConfetti();
+        animateScore(score);
+        setTimeout(() => {
+          const resultEl = document.getElementById('result');
+          resultEl.innerHTML = `🎯 You're <strong>${score}% AI-positive</strong>!`;
+          resultEl.classList.add('show');
+        }, 1000);
+      }, 500);
     });
 
     // Initialize
