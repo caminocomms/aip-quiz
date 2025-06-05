@@ -38,8 +38,7 @@
       border-radius: 10px;
       max-width: 800px;
       margin: 0 auto;
-      min-height: 500px;
-      max-height: 80vh;
+      min-height: auto;
       box-shadow: 0 4px 6px rgba(45, 54, 72, 0.1);
       position: relative;
       overflow: hidden;
@@ -47,22 +46,20 @@
 
     .question-page {
       display: none;
-      flex: 1;
-      flex-direction: column;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
       padding: 2rem;
       box-sizing: border-box;
-      overflow-y: auto;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      min-height: 100%;
     }
 
     .question-page.active {
-      display: flex;
+      display: block;
       animation: slideInRight 0.4s ease-out;
     }
+
 
     .question-page.slide-out-left {
       animation: slideOutLeft 0.4s ease-in;
@@ -117,10 +114,7 @@
     }
 
     .question {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      min-height: auto;
     }
 
     .question-content {
@@ -366,15 +360,11 @@
       }
 
       .quiz-container {
-        min-height: 600px;
-        max-height: 90vh;
         margin: 0;
       }
 
       .question-page {
         padding: 1.5rem;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
       }
 
       .question h2 {
@@ -466,6 +456,45 @@
       .result {
         font-size: 1.5rem;
       }
+
+      .persona-image {
+        width: 150px;
+        height: 150px;
+      }
+
+      .conference-promo, .discount-section {
+        padding: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .conference-promo h3 {
+        font-size: 1.1rem;
+      }
+
+      .discount-code {
+        font-size: 1.3rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .cta-button {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+      }
+
+      .ai-spectrum {
+        padding: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .spectrum-container {
+        height: 30px;
+      }
+
+      .spectrum-indicator {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -474,14 +503,11 @@
       }
 
       .quiz-container {
-        min-height: 650px;
-        max-height: 95vh;
+        margin: 0;
       }
 
       .question-page {
         padding: 1rem;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
       }
 
       .question h2 {
@@ -509,6 +535,39 @@
 
       .result {
         font-size: 1.3rem;
+      }
+
+      .persona-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .conference-promo, .discount-section {
+        padding: 0.75rem;
+      }
+
+      .discount-code {
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .cta-button {
+        padding: 0.875rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .ai-spectrum {
+        padding: 0.75rem;
+      }
+
+      .spectrum-container {
+        height: 25px;
+      }
+
+      .spectrum-indicator {
+        width: 35px;
+        height: 35px;
+        font-size: 0.7rem;
       }
     }
 
@@ -570,8 +629,289 @@
     }
 
     .results-celebration {
+      background: var(--aip-white);
+    }
+
+    .results-celebration .question {
+      color: var(--aip-navy-blue);
+    }
+
+    /* Loading screen styles */
+    .loading-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--aip-white);
+      padding: 3rem 2rem;
+      height: 100%;
+    }
+
+    .loading-screen.active {
+      display: flex;
+    }
+
+    .loading-text {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      color: var(--aip-mustard);
+    }
+
+    .cogs-container {
+      display: flex;
+      gap: 1.5rem;
+      margin: 3rem 0;
+      flex: 1;
+      align-items: center;
+    }
+
+    .cog {
+      width: 60px;
+      height: 60px;
+      border: 4px solid var(--aip-burnt-orange);
+      border-radius: 50%;
       position: relative;
-      overflow: hidden;
+      animation: spin 2s linear infinite;
+    }
+
+    .cog::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 16px;
+      background: var(--aip-burnt-orange);
+    }
+
+    .cog::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 16px;
+      background: var(--aip-burnt-orange);
+    }
+
+    .cog:nth-child(2) {
+      animation-direction: reverse;
+      animation-duration: 1.5s;
+    }
+
+    .cog:nth-child(3) {
+      animation-duration: 2.5s;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .persona-image-container {
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .persona-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 0;
+      object-fit: cover;
+      border: 3px solid var(--aip-mustard);
+      background-color: var(--aip-cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--aip-navy-blue);
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .persona-description {
+      font-size: 1rem;
+      color: var(--aip-burnt-orange);
+      font-style: italic;
+      text-align: center;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .persona-explanation {
+      margin: 1.5rem 0;
+      color: var(--aip-navy-blue);
+      font-size: 1rem;
+      line-height: 1.5;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* AI Spectrum Slider */
+    .ai-spectrum {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(230, 222, 200, 0.1);
+      border-radius: 10px;
+      border: 1px solid var(--aip-cream);
+    }
+
+    .spectrum-title {
+      text-align: center;
+      color: var(--aip-mustard);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .spectrum-container {
+      position: relative;
+      height: 30px;
+      background: linear-gradient(90deg, #dc3545 0%, #ffc107 50%, #28a745 100%);
+      border-radius: 15px;
+      margin: 0.5rem 0;
+    }
+
+    .spectrum-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--aip-navy-blue);
+    }
+
+    .spectrum-indicator {
+      position: absolute;
+      top: -10px;
+      width: 50px;
+      height: 50px;
+      background: var(--aip-white);
+      border: 3px solid var(--aip-mustard);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--aip-navy-blue);
+      font-size: 0.8rem;
+      transition: left 0.8s ease-out;
+    }
+
+    .conference-promo {
+      padding: 1.5rem 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .conference-promo h3 {
+      color: var(--aip-mustard);
+      font-size: 1.1rem;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .conference-promo p {
+      margin: 0.5rem 0;
+      color: var(--aip-navy-blue);
+      font-size: 0.9rem;
+    }
+
+    .event-details {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--aip-burnt-orange) !important;
+    }
+
+    .discount-section {
+      background: var(--aip-burnt-orange);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .discount-label {
+      color: var(--aip-white);
+      font-size: 0.9rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+    }
+
+    .discount-code {
+      background: var(--aip-mustard);
+      color: var(--aip-navy-blue);
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 0.25rem 0;
+      cursor: pointer;
+      user-select: all;
+      transition: all 0.3s ease;
+      border: 2px solid var(--aip-white);
+    }
+
+    .discount-code:hover {
+      background: var(--aip-white);
+      transform: scale(1.02);
+    }
+
+    .discount-amount {
+      color: var(--aip-white);
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .cta-button {
+      display: block;
+      background: var(--aip-burnt-orange);
+      color: var(--aip-white);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      margin: 1rem auto;
+      max-width: 350px;
+      transition: all 0.3s ease;
+      transform: scale(1);
+    }
+
+    .cta-button:hover {
+      background: #d4714a;
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(204, 99, 62, 0.4);
+    }
+
+    .social-share {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .social-share p {
+      color: var(--aip-navy-blue);
+      margin: 0 0 1rem 0;
+    }
+
+    .share-linkedin {
+      background: #0077b5;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .share-linkedin:hover {
+      background: #005885;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -584,11 +924,65 @@
     <form id="quiz-form">
       <!-- Question pages will be generated by JavaScript -->
       
+      <div class="question-page results-celebration" id="loading-page">
+        <div class="question">
+          <div class="loading-screen active">
+            <div class="loading-text">Calculating your AI positivity...</div>
+            <div class="cogs-container">
+              <div class="cog"></div>
+              <div class="cog"></div>
+              <div class="cog"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="question-page results-celebration" id="results-page">
         <div class="question">
-          <h2>Your Results</h2>
-          <div class="score-counter" id="score-counter">0%</div>
-          <div id="result" class="result"></div>
+          <div class="persona-image-container">
+            <img id="persona-image" src="" alt="" class="persona-image">
+          </div>
+          
+          <h2 id="persona-title" style="text-align: center;">You're [Persona Name]!</h2>
+          <p class="persona-description" id="persona-description">[Persona tagline]</p>
+          
+          <p class="persona-explanation" id="persona-explanation">
+            As <strong id="persona-name-repeat">[Persona Name]</strong>, your responses show...
+          </p>
+
+          <div class="ai-spectrum">
+            <div class="spectrum-title">Your AI Positivity Spectrum</div>
+            <div class="spectrum-container">
+              <div class="spectrum-indicator" id="spectrum-indicator">YOU</div>
+            </div>
+            <div class="spectrum-labels">
+              <span>AI Skeptic</span>
+              <span>Balanced</span>
+              <span>AI Optimist</span>
+            </div>
+          </div>
+
+          <div class="discount-section">
+            <p class="discount-label">Your exclusive discount code:</p>
+            <div class="discount-code" id="discount-code">[PERSONACODE]</div>
+            <p class="discount-amount">Save £200 on your ticket!</p>
+          </div>
+          
+          <div class="conference-promo">
+            <h3>Ready to level up your AI adventure?</h3>
+            <p>Join 80+ pharma professionals exploring AI's real-world impact at Adventures in Pharma.</p>
+            <p class="event-details">📅 1st July 2025 | 📍 The Brewery, London</p>
+            
+            <a href="https://eur.cvent.me/wzo5xa" target="_blank" class="cta-button">
+              Claim Your Spot at Adventures in Pharma
+            </a>
+          </div>
+          
+          <div class="social-share">
+            <p>Share your AI adventure profile:</p>
+            <button class="share-linkedin" id="share-linkedin">Share on LinkedIn</button>
+          </div>
+          
           <button type="button" id="restart-btn" onclick="location.reload()">Take Quiz Again</button>
         </div>
       </div>
@@ -701,6 +1095,23 @@
       }
     }
 
+    // Function to adjust container height to content
+    function adjustContainerHeight() {
+      const activePage = document.querySelector('.question-page.active');
+      const container = document.querySelector('.quiz-container');
+      
+      if (activePage && container) {
+        // Temporarily make it visible to measure
+        activePage.style.position = 'static';
+        activePage.style.visibility = 'hidden';
+        const height = activePage.offsetHeight;
+        activePage.style.position = 'absolute';
+        activePage.style.visibility = 'visible';
+        
+        container.style.height = height + 'px';
+      }
+    }
+
     function showQuestion(questionNum, direction = 'forward') {
       const currentActive = document.querySelector('.question-page.active');
       const nextPage = document.querySelector(`[data-question="${questionNum}"]`);
@@ -763,6 +1174,11 @@
           if (nextBtn) nextBtn.style.display = 'inline-block';
           if (submitBtn) submitBtn.style.display = 'none';
         }
+
+        // Adjust container height
+        setTimeout(() => {
+          adjustContainerHeight();
+        }, 50);
       }, currentActive ? 200 : 0);
     }
 
@@ -847,19 +1263,73 @@
       }
     }
 
-    // Score counter animation
-    function animateScore(targetScore) {
-      const counter = document.getElementById('score-counter');
-      let currentScore = 0;
-      const increment = targetScore / 50;
-      const timer = setInterval(() => {
-        currentScore += increment;
-        if (currentScore >= targetScore) {
-          currentScore = targetScore;
-          clearInterval(timer);
-        }
-        counter.textContent = Math.round(currentScore) + '%';
-      }, 30);
+    // Persona data
+    const personas = {
+      'grounded': {
+        name: 'The Grounded Explorer',
+        tagline: 'Ready to begin your AI journey with a solid foundation',
+        code: 'EXPLORER',
+        explanation: 'you value thoughtful, evidence-based approaches to AI adoption. You believe in understanding the fundamentals before diving deep and prefer to see proven results rather than chase every new trend.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🌱%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3EExplorer%3C/text%3E%3C/svg%3E'
+      },
+      'telescope': {
+        name: 'The Telescope Tester',
+        tagline: 'Spotting exciting AI possibilities on the horizon',
+        code: 'TELESCOPE',
+        explanation: 'you\'re curious about AI\'s potential while maintaining healthy skepticism. You like to observe and analyze before committing, always looking for the next breakthrough while staying realistic about current limitations.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🔭%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ETester%3C/text%3E%3C/svg%3E'
+      },
+      'launchpad': {
+        name: 'The Launch Pad Lingerer',
+        tagline: 'Gearing up for lift-off into AI\'s potential',
+        code: 'LAUNCHPAD',
+        explanation: 'you\'re preparing for an AI-powered future while balancing optimism with practical concerns. You see the potential but want to ensure proper preparation and risk management before full implementation.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🚀%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="18" font-family="Arial"%3ELingerer%3C/text%3E%3C/svg%3E'
+      },
+      'rocket': {
+        name: 'The Rocket Rider',
+        tagline: 'Blasting off into pharma\'s AI-powered future',
+        code: 'ROCKET',
+        explanation: 'you\'re enthusiastic about AI\'s transformative potential in pharma. You believe in moving quickly to gain competitive advantages while still maintaining professional standards and ethical considerations.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🚀%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ERider%3C/text%3E%3C/svg%3E'
+      },
+      'orbit': {
+        name: 'The Orbit Breaker',
+        tagline: 'Exploring new AI frontiers in pharma space',
+        code: 'ORBIT',
+        explanation: 'you\'re highly optimistic about AI\'s revolutionary potential. You see AI as a game-changer that will fundamentally transform how pharma operates, from R&D to patient care.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🌌%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3EBreaker%3C/text%3E%3C/svg%3E'
+      },
+      'warpspeed': {
+        name: 'The Warp Speed Captain',
+        tagline: 'Leading the charge into pharma\'s AI revolution',
+        code: 'WARPSPEED',
+        explanation: 'you\'re a true AI evangelist who believes we\'re on the brink of a pharmaceutical revolution. You see AI as essential for staying competitive and are ready to embrace cutting-edge technologies today.',
+        image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E⚡%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ECaptain%3C/text%3E%3C/svg%3E'
+      }
+    };
+
+    function getPersonaFromScore(score) {
+      if (score <= 16) return personas.grounded;
+      if (score <= 33) return personas.telescope;
+      if (score <= 50) return personas.launchpad;
+      if (score <= 67) return personas.rocket;
+      if (score <= 84) return personas.orbit;
+      return personas.warpspeed;
+    }
+
+    function shareOnLinkedIn(persona) {
+      const quizUrl = window.location.href;
+      const message = `I just discovered I'm a ${persona.name} in the AI Positivity Quiz! 🚀
+
+${persona.tagline}
+
+Find your AI adventure profile and get an exclusive discount for Adventures in Pharma (1 July, London): ${quizUrl}
+
+#AI #Pharma #AdventuresInPharma`;
+      
+      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}`;
+      window.open(linkedInUrl, '_blank');
     }
 
     // Form submission
@@ -878,28 +1348,98 @@
         }
       }
       const score = Math.round((total / (totalQuestions * 4)) * 100);
+      const persona = getPersonaFromScore(score);
       
-      // Show results page
+      // Use the shared results function
+      showResults(score, persona);
+    });
+
+    // Check for URL parameters to skip to results
+    function checkUrlParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const scoreParam = urlParams.get('score');
+      
+      if (scoreParam !== null) {
+        const score = parseInt(scoreParam);
+        if (score >= 0 && score <= 100) {
+          // Skip directly to results with specified score
+          setTimeout(() => {
+            const persona = getPersonaFromScore(score);
+            showResults(score, persona);
+          }, 100);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // Extracted results display function
+    function showResults(score, persona) {
+      // Show loading page first
       document.querySelectorAll('.question-page').forEach(page => {
         page.classList.remove('active');
       });
-      document.getElementById('results-page').classList.add('active');
+      document.getElementById('loading-page').classList.add('active');
       
-      // Start celebrations
+      // After 3 seconds, show results
       setTimeout(() => {
-        createConfetti();
-        animateScore(score);
+        document.getElementById('loading-page').classList.remove('active');
+        document.getElementById('results-page').classList.add('active');
+        
+        // Start celebrations
         setTimeout(() => {
-          const resultEl = document.getElementById('result');
-          resultEl.innerHTML = `🎯 You're <strong>${score}% AI-positive</strong>!`;
-          resultEl.classList.add('show');
-        }, 1000);
-      }, 500);
-    });
+          createConfetti();
+          
+          // Update persona content
+          document.getElementById('persona-image').src = persona.image;
+          document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
+          document.getElementById('persona-title').textContent = `You're ${persona.name}!`;
+          document.getElementById('persona-description').textContent = persona.tagline;
+          document.getElementById('persona-name-repeat').textContent = persona.name;
+          document.getElementById('persona-explanation').innerHTML = `As <strong>${persona.name}</strong>, ${persona.explanation}`;
+          document.getElementById('discount-code').textContent = persona.code;
+          
+          // Position spectrum indicator based on score
+          const spectrumPosition = score; // 0-100
+          document.getElementById('spectrum-indicator').style.left = `${spectrumPosition}%`;
+          
+          // Add LinkedIn sharing functionality
+          document.getElementById('share-linkedin').onclick = () => shareOnLinkedIn(persona);
+          
+          // Adjust container height for results
+          setTimeout(() => {
+            adjustContainerHeight();
+          }, 100);
+          
+          // Show content with animations
+          setTimeout(() => {
+            const elementsToShow = ['persona-title', 'persona-description', 'persona-explanation'];
+            elementsToShow.forEach((id, index) => {
+              setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) {
+                  el.style.opacity = '0';
+                  el.style.transform = 'translateY(20px)';
+                  el.style.transition = 'all 0.5s ease';
+                  setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                  }, 100);
+                }
+              }, index * 300);
+            });
+          }, 300);
+        }, 500);
+      }, 3000);
+    }
 
     // Initialize
     generateQuestionPages();
-    showQuestion(1);
+    
+    // Check if we should skip to results, otherwise start quiz
+    if (!checkUrlParams()) {
+      showQuestion(1);
+    }
   </script>
 </body>
 </html>
