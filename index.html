@@ -38,7 +38,7 @@
       border-radius: 10px;
       max-width: 800px;
       margin: 0 auto;
-      min-height: 400px;
+      min-height: 500px;
       box-shadow: 0 4px 6px rgba(45, 54, 72, 0.1);
       position: relative;
       overflow: hidden;
@@ -130,6 +130,8 @@
       font-size: 1.5rem;
       margin-bottom: 2rem;
       text-align: left;
+      line-height: 1.4;
+      min-height: 4rem;
     }
 
     .likert-scale {
@@ -322,7 +324,23 @@
       font-size: 0.9rem;
       color: var(--aip-burnt-orange);
       font-style: italic;
-      text-align: center;
+      text-align: left;
+    }
+
+    .explainer a {
+      color: var(--aip-navy-blue);
+      text-decoration: none;
+      border-bottom: 1px solid var(--aip-navy-blue);
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .explainer a:hover {
+      color: var(--aip-burnt-orange);
+      border-bottom-color: var(--aip-burnt-orange);
+      background-color: rgba(45, 54, 72, 0.05);
+      padding: 0 2px;
+      border-radius: 2px;
     }
 
     .logo {
@@ -419,60 +437,61 @@
     </form>
   </div>
 
-  <script>
-    // Quiz questions and explainer text - easy to update
-    const quizData = {
-      1: {
-        question: "AI will replace most human jobs in pharma marketing and communications (sooner rather than later).",
-        explainer: "Nearly 74% of Americans believe automation will increase unemployment by replacing human jobs (<a href='https://www.pewresearch.org/fact-tank/2017/10/04/americans-think-automation-will-take-over-more-jobs-than-it-will-create/' target='_blank'>Pew Research, 2017</a>).",
-        reverse: true
-      },
-      2: {
-        question: "AI in pharma is overhyped 'snake oil' with little real payoff.",
-        explainer: "83% of life sciences professionals have called AI \"overrated,\" despite its growing usage (<a href='https://www.arisglobal.com/resources/reports/global-life-sciences-survey-ai-in-drug-development/' target='_blank'>ArisGlobal, 2023</a>).",
-        reverse: true
-      },
-      3: {
-        question: "By 2027, AI will be running the show – it'll outperform humans at almost every task in pharma.",
-        explainer: "The \"AI 2027\" vision imagines AI as superior to humans in nearly all domains within a few years (<a href='https://www.technologyreview.com/2023/04/20/1071692/ai-2027-open-letter-ai-risk-explained/' target='_blank'>MIT Technology Review, 2023</a>).",
-        reverse: false
-      },
-      4: {
-        question: "I trust generative AI (e.g. ChatGPT) to produce accurate and reliable medical content.",
-        explainer: "96% of pharma researchers believe AI could contribute to misinformation; 84% fear critical errors (<a href='https://www.nature.com/articles/d41586-023-00635-0' target='_blank'>Nature, 2023</a>).",
-        reverse: false
-      },
-      5: {
-        question: "AI will make our work in pharma communications more efficient and improve content quality.",
-        explainer: "87% say AI improves quality; 85% say it saves time for high-value work (<a href='https://www.pm360online.com/the-rise-of-generative-ai-in-life-sciences-2024/' target='_blank'>PM360 AI Adoption Survey, 2024</a>).",
-        reverse: false
-      },
-      6: {
-        question: "We should be very cautious with AI in pharma marketing – better to hold off until all the compliance and privacy risks are addressed.",
-        explainer: "Over half of life sciences firms – including 65% of top 20 pharmas – have banned ChatGPT internally due to data security risks (<a href='https://www.statnews.com/2023/04/26/pharma-chatgpt-generative-ai-restrictions/' target='_blank'>STAT News, 2023</a>).",
-        reverse: true
-      },
-      7: {
-        question: "Generative AI can create content – text, images, even videos – that's as engaging as if a human made it.",
-        explainer: "AI is now being used to generate pharma marketing materials, videos, and even emotional patient imagery (<a href='https://endpts.com/ai-in-pharma-creative-campaigns/' target='_blank'>Endpoints News, 2024</a>).",
-        reverse: false
-      },
-      8: {
-        question: "If you don't embrace AI tools now, you'll be left behind in the pharma industry.",
-        explainer: "94% of healthcare businesses now use AI/ML; experts call on pharma to \"rally behind AI\" (<a href='https://www.mckinsey.com/industries/life-sciences/our-insights/how-ai-is-transforming-life-sciences-2024' target='_blank'>McKinsey, 2024</a>).",
-        reverse: false
-      },
-      9: {
-        question: "Relying on AI too much will erode our own skills in critical thinking and judgment.",
-        explainer: "86% of researchers worry that overuse of AI will weaken human cognitive abilities (<a href='https://www.nature.com/articles/d41586-023-00635-0' target='_blank'>Nature, 2023</a>).",
-        reverse: true
-      },
-      10: {
-        question: "I'd trust an AI algorithm to guide important decisions in a pharma marketing campaign.",
-        explainer: "Over 80% say AI improves efficiency — but 91% are still concerned about data security and ethical use (<a href='https://www.pm360online.com/the-rise-of-generative-ai-in-life-sciences-2024/' target='_blank'>PM360, 2024</a>).",
-        reverse: false
-      }
-    };
+<script>
+// Note: reverse === true when a “strongly disagree” response is interpreted as an AI-positive stance.
+
+const quizData = {
+  1: {
+    question: "AI will replace most human jobs in pharma marketing and communications (sooner rather than later).",
+    explainer: "A 2017 Pew Research Center survey found that 72 % of Americans worry that robots and computers could take over many human jobs (<a href='https://www.pewresearch.org/internet/2017/10/04/americans-attitudes-toward-a-future-in-which-robots-and-computers-can-do-many-human-jobs/' target='_blank'>Pew Research Center, 2017</a>).",
+    reverse: true
+  },
+  2: {
+    question: "AI in pharma is overhyped “snake oil” with little real payoff.",
+    explainer: "In ZoomRx’s 2024 “State of AI” report, 83 % of surveyed life-science professionals called AI overrated (<a href='https://www.zoomrx.com/reports/FERMA_State_of_AI_Report_April_2024.pdf' target='_blank'>ZoomRx, 2024</a>).",
+    reverse: true
+  },
+  3: {
+    question: "By 2027, AI will be running the show – it’ll outperform humans at almost every task in pharma.",
+    explainer: "The speculative “AI 2027” scenario predicts super-human systems eclipsing people across pharma tasks within two years (<a href='https://ai-2027.com/' target='_blank'>AI-2027, 2025</a>).",
+    reverse: false
+  },
+  4: {
+    question: "I trust generative AI (e.g., ChatGPT) to produce accurate and reliable medical content.",
+    explainer: "Elsevier’s 2024 ‘Attitudes toward AI’ study shows 95 % of researchers and 93 % of clinicians expect AI will also spread medical misinformation (<a href='https://www.elsevier.com/insights/attitudes-toward-ai' target='_blank'>Elsevier, 2024</a>).",
+    reverse: false
+  },
+  5: {
+    question: "AI will make our work in pharma communications more efficient and improve content quality.",
+    explainer: "A 2024 Wolters Kluwer survey reports 81 % of physicians say generative AI improves care-team interactions and 68 % say it saves them time searching literature (<a href='https://assets.contenthub.wolterskluwer.com/api/public/content/2231207-gen-ai-infographic-pdf' target='_blank'>Wolters Kluwer, 2024</a>).",
+    reverse: false
+  },
+  6: {
+    question: "We should be very cautious with AI in pharma marketing – better to hold off until all the compliance and privacy risks are addressed.",
+    explainer: "An April 2024 Fierce Pharma analysis found two-thirds of the world’s 20 largest pharmas have banned ChatGPT internally over data-security fears (<a href='https://www.fiercepharma.com/marketing/two-thirds-top-20-pharmas-have-banned-chatgpt-and-many-life-sci-call-ai-overrated-survey' target='_blank'>Fierce Pharma, 2024</a>).",
+    reverse: true
+  },
+  7: {
+    question: "Generative AI can create content — text, images, even videos — that’s as engaging as if a human made it.",
+    explainer: "Incyte’s award-winning “Unseen Journey” campaign used generative-AI art to illustrate hidden cancer symptoms (<a href='https://www.nasdaq.com/press-release/incyte-launches-the-unseen-journey-to-elevate-the-hidden-impact-of-myeloproliferative' target='_blank'>Business Wire, 2024</a>).",
+    reverse: false
+  },
+  8: {
+    question: "If you don’t embrace AI tools now, you’ll be left behind in the pharma industry.",
+    explainer: "McKinsey’s Q4 2024 survey found 85 % of U.S. healthcare leaders were already piloting or deploying generative AI (<a href='https://www.mckinsey.com/industries/healthcare/our-insights/generative-ai-in-healthcare-current-trends-and-future-outlook' target='_blank'>McKinsey, 2025</a>).",
+    reverse: false
+  },
+  9: {
+    question: "Relying on AI too much will erode our own skills in critical thinking and judgment.",
+    explainer: "Experts warn that heavy AI reliance encourages “cognitive off-loading” and may dull human creativity (<a href='https://www.theguardian.com/technology/2025/apr/19/dont-ask-what-ai-can-do-for-us-ask-what-it-is-doing-to-us-are-chatgpt-and-co-harming-human-intelligence' target='_blank'>The Guardian, 2025</a>).",
+    reverse: true
+  },
+  10: {
+    question: "I’d trust an AI algorithm to guide important decisions in a pharma marketing campaign.",
+    explainer: "Salesforce’s 2025 global snapshot of 4,000+ workers found 67 % of marketers expect generative AI to enhance strategic decision-making, though 73 % still foresee new security risks (<a href='https://www.salesforce.com/news/stories/generative-ai-statistics/' target='_blank'>Salesforce, 2025</a>).",
+    reverse: false
+  }
+};
 
     let currentQuestion = 1;
     const totalQuestions = 10;
