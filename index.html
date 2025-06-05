@@ -6,111 +6,405 @@
   <title>AI Positivity Quiz</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/blueprint-css@3.4.0/dist/blueprint.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --brand-blue: #0e1f56;
-      --brand-teal: #5ffbf1;
-      --brand-white: #ffffff;
-      --brand-dark: #001537;
+      --aip-navy-blue: #2d3648;
+      --aip-mustard: #fdc35e;
+      --aip-white: #ffffff;
+      --aip-burnt-orange: #cc633e;
+      --aip-cream: #e6dec8;
       --font-main: 'Inter', sans-serif;
     }
 
     body {
       font-family: var(--font-main);
-      background-color: var(--brand-dark);
-      color: var(--brand-white);
+      background-color: var(--aip-navy-blue);
+      color: var(--aip-white);
       margin: 0;
       padding: 2rem;
     }
 
     h1 {
-      color: var(--brand-teal);
+      color: var(--aip-white);
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
 
     .quiz-container {
-      background-color: var(--brand-blue);
+      background-color: var(--aip-white);
+      color: var(--aip-navy-blue);
       padding: 2rem;
       border-radius: 10px;
       max-width: 800px;
       margin: 0 auto;
+      min-height: 400px;
+      box-shadow: 0 4px 6px rgba(45, 54, 72, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question-page {
+      display: none;
+      animation: fadeIn 0.3s ease-in;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .question-page.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .question {
-      margin-bottom: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .question-content {
+      text-align: center;
+    }
+
+    .question h2 {
+      color: var(--aip-burnt-orange);
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .likert-scale {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--aip-burnt-orange);
     }
 
     label {
-      display: block;
-      margin: 0.25rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      padding: 0.75rem 0.5rem;
+      background-color: var(--aip-cream);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      text-align: center;
+      font-size: 0.85rem;
+      border: 1px solid var(--aip-mustard);
+    }
+
+    label:hover {
+      background-color: var(--aip-mustard);
+    }
+
+    label input[type="radio"] {
+      margin-bottom: 0.5rem;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 2rem;
+    }
+
+    .progress {
+      color: var(--aip-burnt-orange);
+      font-weight: 600;
     }
 
     button {
-      background-color: var(--brand-teal);
+      background-color: var(--aip-burnt-orange);
       border: none;
       padding: 0.75rem 1.5rem;
       font-weight: 600;
-      color: var(--brand-dark);
+      color: var(--aip-white);
       cursor: pointer;
       border-radius: 5px;
+      transition: opacity 0.2s ease;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background-color: transparent;
+      color: var(--aip-navy-blue);
+      border: 2px solid var(--aip-navy-blue);
     }
 
     .result {
-      margin-top: 2rem;
-      font-size: 1.25rem;
+      margin: 2rem 0;
+      font-size: 2rem;
       font-weight: bold;
+      text-align: center;
+      color: var(--aip-burnt-orange);
+    }
+
+    #restart-btn {
+      display: block;
+      margin: 2rem auto 0;
+      background-color: var(--aip-mustard);
+      color: var(--aip-navy-blue);
+    }
+
+    .explainer {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--aip-burnt-orange);
+      font-style: italic;
+      text-align: center;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo img {
+      max-width: 600px;
+      height: auto;
     }
   </style>
 </head>
 <body>
+  <div class="logo">
+    <img src="https://cdn.prod.website-files.com/67ab2a95777a506d08092426/67ab312121d804a41517cf6e_AIP%20Logo-min.png" alt="AIP Logo">
+  </div>
+  
   <div class="container quiz-container">
-    <h1>How AI-positive are you?</h1>
     <form id="quiz-form">
-      <div class="question">
-        <p>1. What best describes your current use of AI in your work?</p>
-        <label><input type="radio" name="q1" value="3"> I use it regularly and experiment with new tools</label>
-        <label><input type="radio" name="q1" value="2"> I’ve tried it but I’m still figuring it out</label>
-        <label><input type="radio" name="q1" value="1"> I’m curious but haven’t used it yet</label>
-        <label><input type="radio" name="q1" value="0"> I’m skeptical or don’t trust it</label>
+      <!-- Question pages will be generated by JavaScript -->
+      
+      <div class="question-page" id="results-page">
+        <div class="question">
+          <h2>Your Results</h2>
+          <div id="result" class="result"></div>
+          <button type="button" id="restart-btn" onclick="location.reload()">Take Quiz Again</button>
+        </div>
       </div>
 
-      <div class="question">
-        <p>2. How excited are you about AI's potential in pharma?</p>
-        <label><input type="radio" name="q2" value="3"> Extremely — it’s a game-changer</label>
-        <label><input type="radio" name="q2" value="2"> Cautiously optimistic</label>
-        <label><input type="radio" name="q2" value="1"> Not sure yet</label>
-        <label><input type="radio" name="q2" value="0"> Not at all</label>
-      </div>
-
-      <div class="question">
-        <p>3. Which statement feels most true to you?</p>
-        <label><input type="radio" name="q3" value="3"> AI helps me think more creatively</label>
-        <label><input type="radio" name="q3" value="2"> AI might be helpful someday</label>
-        <label><input type="radio" name="q3" value="1"> AI feels overhyped right now</label>
-        <label><input type="radio" name="q3" value="0"> AI is not relevant to my work</label>
-      </div>
-
-      <button type="submit">Get my AI Positivity Score</button>
     </form>
-
-    <div id="result" class="result"></div>
   </div>
 
   <script>
-    const form = document.getElementById('quiz-form');
-    const resultDiv = document.getElementById('result');
+    // Quiz questions and explainer text - easy to update
+    const quizData = {
+      1: {
+        question: "AI will replace most human jobs in pharma marketing and communications (sooner rather than later).",
+        explainer: "Nearly 74% of Americans believe automation will increase unemployment by replacing human jobs (<a href='https://www.pewresearch.org/fact-tank/2017/10/04/americans-think-automation-will-take-over-more-jobs-than-it-will-create/' target='_blank'>Pew Research, 2017</a>).",
+        reverse: true
+      },
+      2: {
+        question: "AI in pharma is overhyped 'snake oil' with little real payoff.",
+        explainer: "83% of life sciences professionals have called AI \"overrated,\" despite its growing usage (<a href='https://www.arisglobal.com/resources/reports/global-life-sciences-survey-ai-in-drug-development/' target='_blank'>ArisGlobal, 2023</a>).",
+        reverse: true
+      },
+      3: {
+        question: "By 2027, AI will be running the show – it'll outperform humans at almost every task in pharma.",
+        explainer: "The \"AI 2027\" vision imagines AI as superior to humans in nearly all domains within a few years (<a href='https://www.technologyreview.com/2023/04/20/1071692/ai-2027-open-letter-ai-risk-explained/' target='_blank'>MIT Technology Review, 2023</a>).",
+        reverse: false
+      },
+      4: {
+        question: "I trust generative AI (e.g. ChatGPT) to produce accurate and reliable medical content.",
+        explainer: "96% of pharma researchers believe AI could contribute to misinformation; 84% fear critical errors (<a href='https://www.nature.com/articles/d41586-023-00635-0' target='_blank'>Nature, 2023</a>).",
+        reverse: false
+      },
+      5: {
+        question: "AI will make our work in pharma communications more efficient and improve content quality.",
+        explainer: "87% say AI improves quality; 85% say it saves time for high-value work (<a href='https://www.pm360online.com/the-rise-of-generative-ai-in-life-sciences-2024/' target='_blank'>PM360 AI Adoption Survey, 2024</a>).",
+        reverse: false
+      },
+      6: {
+        question: "We should be very cautious with AI in pharma marketing – better to hold off until all the compliance and privacy risks are addressed.",
+        explainer: "Over half of life sciences firms – including 65% of top 20 pharmas – have banned ChatGPT internally due to data security risks (<a href='https://www.statnews.com/2023/04/26/pharma-chatgpt-generative-ai-restrictions/' target='_blank'>STAT News, 2023</a>).",
+        reverse: true
+      },
+      7: {
+        question: "Generative AI can create content – text, images, even videos – that's as engaging as if a human made it.",
+        explainer: "AI is now being used to generate pharma marketing materials, videos, and even emotional patient imagery (<a href='https://endpts.com/ai-in-pharma-creative-campaigns/' target='_blank'>Endpoints News, 2024</a>).",
+        reverse: false
+      },
+      8: {
+        question: "If you don't embrace AI tools now, you'll be left behind in the pharma industry.",
+        explainer: "94% of healthcare businesses now use AI/ML; experts call on pharma to \"rally behind AI\" (<a href='https://www.mckinsey.com/industries/life-sciences/our-insights/how-ai-is-transforming-life-sciences-2024' target='_blank'>McKinsey, 2024</a>).",
+        reverse: false
+      },
+      9: {
+        question: "Relying on AI too much will erode our own skills in critical thinking and judgment.",
+        explainer: "86% of researchers worry that overuse of AI will weaken human cognitive abilities (<a href='https://www.nature.com/articles/d41586-023-00635-0' target='_blank'>Nature, 2023</a>).",
+        reverse: true
+      },
+      10: {
+        question: "I'd trust an AI algorithm to guide important decisions in a pharma marketing campaign.",
+        explainer: "Over 80% say AI improves efficiency — but 91% are still concerned about data security and ethical use (<a href='https://www.pm360online.com/the-rise-of-generative-ai-in-life-sciences-2024/' target='_blank'>PM360, 2024</a>).",
+        reverse: false
+      }
+    };
 
-    form.addEventListener('submit', function(event) {
+    let currentQuestion = 1;
+    const totalQuestions = 10;
+
+    // Generate question pages dynamically
+    function generateQuestionPages() {
+      const form = document.getElementById('quiz-form');
+      const resultsPage = document.getElementById('results-page');
+      
+      for (let i = 1; i <= totalQuestions; i++) {
+        const questionPage = document.createElement('div');
+        questionPage.className = 'question-page';
+        if (i === 1) questionPage.classList.add('active');
+        questionPage.setAttribute('data-question', i);
+        
+        questionPage.innerHTML = `
+          <div class="question">
+            <h2>Question placeholder</h2>
+            <div class="question-content">
+              <div class="likert-scale">
+                <label><input type="radio" name="q${i}" value="0"> Strongly Disagree</label>
+                <label><input type="radio" name="q${i}" value="1"> Disagree</label>
+                <label><input type="radio" name="q${i}" value="2"> Neutral</label>
+                <label><input type="radio" name="q${i}" value="3"> Agree</label>
+                <label><input type="radio" name="q${i}" value="4"> Strongly Agree</label>
+              </div>
+              <p class="explainer">Explainer placeholder</p>
+            </div>
+          </div>
+          <div class="navigation">
+            <div class="progress">${i} / ${totalQuestions}</div>
+            <div>
+              <button type="button" class="prev-btn secondary"${i === 1 ? ' disabled' : ''}>Back</button>
+              ${i === totalQuestions ? 
+                '<button type="submit" class="submit-btn" disabled>Get my AI Positivity Score</button>' : 
+                '<button type="button" class="next-btn" disabled>Next</button>'
+              }
+            </div>
+          </div>
+        `;
+        
+        form.insertBefore(questionPage, resultsPage);
+      }
+    }
+
+    function showQuestion(questionNum) {
+      document.querySelectorAll('.question-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.querySelector(`[data-question="${questionNum}"]`).classList.add('active');
+      
+      // Update question content from quizData
+      const currentPage = document.querySelector(`[data-question="${questionNum}"]`);
+      const questionData = quizData[questionNum];
+      
+      if (questionData) {
+        const questionTitle = currentPage.querySelector('h2');
+        const explainerText = currentPage.querySelector('.explainer');
+        
+        if (questionTitle) questionTitle.textContent = questionData.question;
+        if (explainerText) explainerText.innerHTML = questionData.explainer;
+      }
+      
+      // Update navigation buttons in current page
+      const prevBtn = currentPage.querySelector('.prev-btn');
+      const nextBtn = currentPage.querySelector('.next-btn');
+      const submitBtn = currentPage.querySelector('.submit-btn');
+      
+      if (prevBtn) prevBtn.disabled = questionNum === 1;
+      
+      if (questionNum === totalQuestions) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (submitBtn) submitBtn.style.display = 'inline-block';
+      } else {
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+        if (submitBtn) submitBtn.style.display = 'none';
+      }
+    }
+
+    function checkAnswer() {
+      const currentAnswer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+      const currentPage = document.querySelector(`[data-question="${currentQuestion}"]`);
+      const nextBtn = currentPage.querySelector('.next-btn');
+      const submitBtn = currentPage.querySelector('.submit-btn');
+      
+      if (currentQuestion === totalQuestions) {
+        if (submitBtn) submitBtn.disabled = !currentAnswer;
+      } else {
+        if (nextBtn) nextBtn.disabled = !currentAnswer;
+      }
+    }
+
+    // Event listeners for radio buttons (using event delegation for dynamically generated content)
+    document.addEventListener('change', function(e) {
+      if (e.target.type === 'radio') {
+        checkAnswer();
+      }
+    });
+
+    // Event listeners for navigation
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('prev-btn')) {
+        if (currentQuestion > 1) {
+          currentQuestion--;
+          showQuestion(currentQuestion);
+          checkAnswer();
+        }
+      }
+      
+      if (e.target.classList.contains('next-btn')) {
+        if (currentQuestion < totalQuestions) {
+          currentQuestion++;
+          showQuestion(currentQuestion);
+          checkAnswer();
+        }
+      }
+    });
+
+    // Form submission
+    document.getElementById('quiz-form').addEventListener('submit', function(event) {
       event.preventDefault();
       let total = 0;
-      for (let i = 1; i <= 3; i++) {
+      for (let i = 1; i <= totalQuestions; i++) {
         const answer = document.querySelector(`input[name="q${i}"]:checked`);
-        if (answer) total += parseInt(answer.value);
+        if (answer) {
+          let value = parseInt(answer.value);
+          // Reverse score for questions marked as reverse
+          if (quizData[i] && quizData[i].reverse) {
+            value = 4 - value; // Convert 0->4, 1->3, 2->2, 3->1, 4->0
+          }
+          total += value;
+        }
       }
-      const score = Math.round((total / 9) * 100);
-      resultDiv.innerHTML = `🎯 You're <span style="color: var(--brand-teal)">${score}% AI-positive</span>!`;
+      const score = Math.round((total / (totalQuestions * 4)) * 100);
+      
+      // Show results page
+      document.querySelectorAll('.question-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById('results-page').classList.add('active');
+      document.getElementById('result').innerHTML = `🎯 You're <strong>${score}% AI-positive</strong>!`;
     });
+
+    // Initialize
+    generateQuestionPages();
+    showQuestion(1);
   </script>
 </body>
 </html>
