@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Positivity Quiz</title>
+  <title>Measure your pharma AI mindset</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/blueprint-css@3.4.0/dist/blueprint.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   
@@ -1050,18 +1050,18 @@
       
       <div class="question-page" id="welcome-page">
         <div class="welcome-content">
-          <h1>AI Positivity Quiz</h1>
+          <h1>Measure your pharma AI mindset</h1>
           <p class="welcome-intro">You don't need to code. You don't need to prompt like a pro.</p>
           <p class="welcome-intro">But if you're curious about AI in pharma — we built something for you.</p>
           
           <div class="welcome-highlight">
-            <p class="welcome-arrow">👉 Take 2 minutes to find out your AI positivity score</p>
+            <p class="welcome-arrow">👉 Take 2 minutes to discover your pharma AI mindset</p>
           </div>
           
           <div class="welcome-benefits">
             <p>You'll get:</p>
             <ul>
-              <li>A positivity badge</li>
+              <li>Your pharma AI mindset profile</li>
               <li>A discount code for Adventures in Pharma</li>
               <li>A chance to win a free ticket</li>
             </ul>
@@ -1078,7 +1078,7 @@
       <div class="question-page results-celebration" id="loading-page">
         <div class="question">
           <div class="loading-screen active">
-            <div class="loading-text">Calculating your AI positivity...</div>
+            <div class="loading-text">Analyzing your pharma AI mindset...</div>
             <div class="cogs-container">
               <div class="cog"></div>
               <div class="cog"></div>
@@ -1095,21 +1095,20 @@
           </div>
           
           <h2 id="persona-title" style="text-align: center;">You're [Persona Name]!</h2>
-          <p class="persona-description" id="persona-description">[Persona tagline]</p>
           
           <p class="persona-explanation" id="persona-explanation">
             As <strong id="persona-name-repeat">[Persona Name]</strong>, your responses show...
           </p>
 
           <div class="ai-spectrum">
-            <div class="spectrum-title">Your AI Positivity Spectrum</div>
+            <div class="spectrum-title">Your Pharma AI Mindset Spectrum</div>
             <div class="spectrum-container">
               <div class="spectrum-indicator" id="spectrum-indicator">YOU</div>
             </div>
             <div class="spectrum-labels">
-              <span>AI Skeptic</span>
-              <span>Balanced</span>
-              <span>AI Optimist</span>
+              <span>Cautious Mindset</span>
+              <span>Balanced Mindset</span>
+              <span>Progressive Mindset</span>
             </div>
           </div>
 
@@ -1215,11 +1214,11 @@
             <h2></h2>
             <div class="question-content">
               <div class="likert-scale">
-                <label><input type="radio" name="q${i}" value="0"> Strongly Disagree</label>
-                <label><input type="radio" name="q${i}" value="1"> Disagree</label>
-                <label><input type="radio" name="q${i}" value="2"> Neutral</label>
-                <label><input type="radio" name="q${i}" value="3"> Agree</label>
-                <label><input type="radio" name="q${i}" value="4"> Strongly Agree</label>
+                <label><input type="radio" name="q${i}" value="0"> Not at all</label>
+                <label><input type="radio" name="q${i}" value="1"> Slightly</label>
+                <label><input type="radio" name="q${i}" value="2"> Moderately</label>
+                <label><input type="radio" name="q${i}" value="3"> Very much</label>
+                <label><input type="radio" name="q${i}" value="4"> Completely</label>
               </div>
               <p class="explainer"></p>
             </div>
@@ -1234,7 +1233,7 @@
             <div>
               <button type="button" class="prev-btn secondary"${i === 1 ? ' disabled' : ''}>&lt; Back</button>
               ${i === totalQuestions ? 
-                '<button type="submit" class="submit-btn" disabled>Get my AI Positivity Score</button>' : 
+                '<button type="submit" class="submit-btn" disabled>Get my AI Mindset Profile</button>' : 
                 '<button type="button" class="next-btn" disabled>Next &gt;</button>'
               }
             </div>
@@ -1417,44 +1416,38 @@
     const personas = {
       'grounded': {
         name: 'The Grounded Explorer',
-        tagline: 'Ready to begin your AI journey with a solid foundation',
         code: 'EXPLORER',
-        explanation: 'you value thoughtful, evidence-based approaches to AI adoption. You believe in understanding the fundamentals before diving deep and prefer to see proven results rather than chase every new trend.',
+        explanation: 'your mindset favors thoughtful, evidence-based approaches to AI adoption. You prioritize understanding fundamentals and proven results over chasing trends.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🌱%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3EExplorer%3C/text%3E%3C/svg%3E'
       },
       'telescope': {
         name: 'The Telescope Tester',
-        tagline: 'Spotting exciting AI possibilities on the horizon',
         code: 'TELESCOPE',
-        explanation: 'you\'re curious about AI\'s potential while maintaining healthy skepticism. You like to observe and analyze before committing, always looking for the next breakthrough while staying realistic about current limitations.',
+        explanation: 'your mindset combines curiosity about AI\'s potential with healthy skepticism. You prefer observation and analysis before commitment, balancing optimism with realistic assessment.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🔭%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ETester%3C/text%3E%3C/svg%3E'
       },
       'launchpad': {
         name: 'The Launch Pad Lingerer',
-        tagline: 'Gearing up for lift-off into AI\'s potential',
         code: 'LAUNCHPAD',
-        explanation: 'you\'re preparing for an AI-powered future while balancing optimism with practical concerns. You see the potential but want to ensure proper preparation and risk management before full implementation.',
+        explanation: 'your mindset balances optimism about AI\'s future with practical implementation concerns. You recognize potential while prioritizing preparation and risk management.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🚀%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="18" font-family="Arial"%3ELingerer%3C/text%3E%3C/svg%3E'
       },
       'rocket': {
         name: 'The Rocket Rider',
-        tagline: 'Blasting off into pharma\'s AI-powered future',
         code: 'ROCKET',
-        explanation: 'you\'re enthusiastic about AI\'s transformative potential in pharma. You believe in moving quickly to gain competitive advantages while still maintaining professional standards and ethical considerations.',
+        explanation: 'your mindset is enthusiastic about AI\'s transformative potential in pharma. You favor quick adoption for competitive advantage while maintaining professional and ethical standards.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🚀%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ERider%3C/text%3E%3C/svg%3E'
       },
       'orbit': {
         name: 'The Orbit Breaker',
-        tagline: 'Exploring new AI frontiers in pharma space',
         code: 'ORBIT',
-        explanation: 'you\'re highly optimistic about AI\'s revolutionary potential. You see AI as a game-changer that will fundamentally transform how pharma operates, from R&D to patient care.',
+        explanation: 'your mindset is highly optimistic about AI\'s revolutionary potential. You view AI as fundamentally transforming pharmaceutical operations, from R&D to patient care.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E🌌%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3EBreaker%3C/text%3E%3C/svg%3E'
       },
       'warpspeed': {
         name: 'The Warp Speed Captain',
-        tagline: 'Leading the charge into pharma\'s AI revolution',
         code: 'WARPSPEED',
-        explanation: 'you\'re a true AI evangelist who believes we\'re on the brink of a pharmaceutical revolution. You see AI as essential for staying competitive and are ready to embrace cutting-edge technologies today.',
+        explanation: 'your mindset fully embraces AI as revolutionary for pharmaceuticals. You view AI adoption as essential for competitive advantage and readily embrace cutting-edge technologies.',
         image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23e6dec8"/%3E%3Ctext x="200" y="180" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="60"%3E⚡%3C/text%3E%3Ctext x="200" y="240" text-anchor="middle" dominant-baseline="middle" fill="%232d3648" font-size="20" font-family="Arial"%3ECaptain%3C/text%3E%3C/svg%3E'
       }
     };
@@ -1470,11 +1463,9 @@
 
     function shareOnLinkedIn(persona) {
       const quizUrl = window.location.href;
-      const message = `I just discovered I'm a ${persona.name} in the AI Positivity Quiz! 🚀
+      const message = `I just discovered I'm a ${persona.name} in the Pharma AI Mindset Quiz! 🚀
 
-${persona.tagline}
-
-Find your AI adventure profile and get an exclusive discount for Adventures in Pharma (1 July, London): ${quizUrl}
+Discover your pharma AI mindset and get an exclusive discount for Adventures in Pharma (1 July, London): ${quizUrl}
 
 #AI #Pharma #AdventuresInPharma`;
       
@@ -1544,7 +1535,6 @@ Find your AI adventure profile and get an exclusive discount for Adventures in P
           document.getElementById('persona-image').src = persona.image;
           document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
           document.getElementById('persona-title').textContent = `You're ${persona.name}!`;
-          document.getElementById('persona-description').textContent = persona.tagline;
           document.getElementById('persona-name-repeat').textContent = persona.name;
           document.getElementById('persona-explanation').innerHTML = `As <strong>${persona.name}</strong>, ${persona.explanation}`;
           document.getElementById('discount-code').textContent = persona.code;
