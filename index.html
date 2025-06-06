@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Measure your pharma AI mindset</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/blueprint-css@3.4.0/dist/blueprint.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   
   <style>
@@ -1473,14 +1472,73 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
       window.open(linkedInUrl, '_blank');
     }
 
+    // Function to detect device type
+    function getDeviceType() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      if (/tablet|ipad|playbook|silk/.test(userAgent)) {
+        return 'tablet';
+      }
+      if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/.test(userAgent)) {
+        return 'mobile';
+      }
+      return 'desktop';
+    }
+
+    // Function to POST quiz results to Xano
+    async function postQuizResults(answers, score, persona) {
+      const payload = {
+        created_at: new Date().toISOString(),
+        persona_type: persona.name,
+        score: score,
+        q1_answer: answers[1] || 0,
+        q2_answer: answers[2] || 0,
+        q3_answer: answers[3] || 0,
+        q4_answer: answers[4] || 0,
+        q5_answer: answers[5] || 0,
+        q6_answer: answers[6] || 0,
+        q7_answer: answers[7] || 0,
+        q8_answer: answers[8] || 0,
+        q9_answer: answers[9] || 0,
+        q10_answer: answers[10] || 0,
+        user_agent: navigator.userAgent,
+        browser_language: navigator.language,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        referrer_url: document.referrer || window.location.href,
+        device_type: getDeviceType()
+      };
+
+      try {
+        const response = await fetch('https://xzqt-mxe3-bdgf.p7.xano.io/api:lLmtpgpS/quiz_result', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          console.error('Failed to submit quiz results:', response.status, response.statusText);
+        } else {
+          console.log('Quiz results submitted successfully');
+        }
+      } catch (error) {
+        console.error('Error submitting quiz results:', error);
+      }
+    }
+
     // Form submission
     document.getElementById('quiz-form').addEventListener('submit', function(event) {
       event.preventDefault();
       let total = 0;
+      const answers = {};
+      
       for (let i = 1; i <= totalQuestions; i++) {
         const answer = document.querySelector(`input[name="q${i}"]:checked`);
         if (answer) {
           let value = parseInt(answer.value);
+          // Store original answer value before any processing
+          answers[i] = value;
+          
           // Reverse score for questions marked as reverse
           if (quizData[i] && quizData[i].reverse) {
             value = 4 - value; // Convert 0->4, 1->3, 2->2, 3->1, 4->0
@@ -1490,6 +1548,9 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
       }
       const score = Math.round((total / (totalQuestions * 4)) * 100);
       const persona = getPersonaFromScore(score);
+      
+      // POST results to Xano endpoint
+      postQuizResults(answers, score, persona);
       
       // Use the shared results function
       showResults(score, persona);
