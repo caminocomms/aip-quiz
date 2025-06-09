@@ -105,11 +105,28 @@
 
           <div class="share-box">
             <h3>Share your mindset</h3>
-            <div class="share-preview">
-              <img id="share-preview-image" src="" alt="Share preview" class="share-preview-img">
+            <div class="share-content">
+              <div class="share-preview">
+                <img id="share-preview-image" src="" alt="Share preview" class="share-preview-img">
+              </div>
+              <div class="share-text">
+                <textarea id="share-textarea" readonly></textarea>
+              </div>
             </div>
-            <button class="download-image-btn" id="download-image">Download to Share</button>
-            <button class="share-linkedin" id="share-linkedin">Post to LinkedIn</button>
+            <div class="share-steps">
+              <div class="share-step">
+                <span class="step-number">1.</span>
+                <button type="button" class="download-image-btn" id="download-image">Download image to share</button>
+              </div>
+              <div class="share-step">
+                <span class="step-number">2.</span>
+                <button type="button" class="copy-text-btn" id="copy-text">Copy text for your post</button>
+              </div>
+              <div class="share-step">
+                <span class="step-number">3.</span>
+                <button type="button" class="share-linkedin" id="share-linkedin">Post to LinkedIn!</button>
+              </div>
+            </div>
           </div>
 
           <div class="conference-promo">
@@ -458,6 +475,13 @@
     }
 
     function shareOnLinkedIn(persona) {
+      const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=I%20just%20discovered%20my%20pharma%20AI%20mindset%E2%80%A6`;
+      window.open(linkedInUrl, '_blank');
+    }
+
+    function setupShareTextarea(persona) {
+      const textarea = document.getElementById('share-textarea');
+      const copyButton = document.getElementById('copy-text');
       const quizUrl = window.location.href;
       const message = `I just discovered my pharma AI mindset – I'm like ${persona.name}!
 
@@ -466,8 +490,38 @@ Think you're more cautious or more progressive than me? Take the quiz and compar
 Discover your pharma AI mindset and get an exclusive discount for Adventures In Pharma (1 July, London): ${quizUrl}
 `;
 
-      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}`;
-      window.open(linkedInUrl, '_blank');
+      // Set the textarea value with a small delay to ensure it's ready
+      setTimeout(() => {
+        textarea.value = message;
+      }, 100);
+
+      // Copy function for both textarea and button
+      const copyToClipboard = async () => {
+        try {
+          await navigator.clipboard.writeText(textarea.value);
+          
+          // Visual feedback on button
+          const originalText = copyButton.textContent;
+          copyButton.textContent = 'Copied!';
+          copyButton.style.background = 'var(--aip-burnt-orange)';
+          copyButton.style.color = 'var(--aip-white)';
+          
+          setTimeout(() => {
+            copyButton.textContent = originalText;
+            copyButton.style.background = 'var(--aip-mustard)';
+            copyButton.style.color = 'var(--aip-navy-blue)';
+          }, 1500);
+          
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+          // Fallback: select all text
+          textarea.select();
+        }
+      };
+
+      // Add click-to-copy functionality to both elements
+      textarea.addEventListener('click', copyToClipboard);
+      copyButton.addEventListener('click', copyToClipboard);
     }
 
     async function downloadPersonaImage(persona) {
@@ -638,6 +692,9 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           // Add download image functionality
           document.getElementById('download-image').onclick = () => downloadPersonaImage(persona);
           
+          // Setup share textarea with copy functionality
+          setupShareTextarea(persona);
+          
           // Setup discount code copy functionality
           setupDiscountCodeCopy();
           
@@ -702,6 +759,9 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           
           // Add download image functionality
           document.getElementById('download-image').onclick = () => downloadPersonaImage(persona);
+          
+          // Setup share textarea with copy functionality
+          setupShareTextarea(persona);
           
           // Setup discount code copy functionality
           setupDiscountCodeCopy();
