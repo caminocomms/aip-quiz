@@ -11,6 +11,9 @@
 body {
   font-family: var(--font-main);
   background-color: var(--aip-navy-blue);
+  background-image: url('https://cdn.prod.website-files.com/67ab2a95777a506d08092426/67ab777a6f79338ef70272cb_Stars.png');
+  background-repeat: repeat;
+  background-size: auto;
   color: var(--aip-white);
   margin: 0;
   padding: 2rem;
@@ -526,6 +529,10 @@ button.secondary:hover:not(:disabled) {
     width: 100%;
     margin: 0.5rem 0;
   }
+
+  .global-footer {
+    padding: 1.5rem 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -627,6 +634,14 @@ button.secondary:hover:not(:disabled) {
   .start-button {
     padding: 1rem 1.5rem;
     font-size: 1rem;
+  }
+
+  .global-footer {
+    padding: 1rem;
+  }
+
+  .global-footer p {
+    font-size: 0.8rem;
   }
 }
 
@@ -1114,4 +1129,29 @@ button.secondary:hover:not(:disabled) {
   background: #d4714a;
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(204, 99, 62, 0.3);
+}
+
+/* Global Footer */
+.global-footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 2rem;
+  color: var(--aip-white);
+}
+
+.global-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.global-footer a {
+  color: var(--aip-mustard);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.global-footer a:hover {
+  color: var(--aip-white);
+  text-decoration: underline;
 }

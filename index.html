@@ -121,6 +121,10 @@
     </form>
   </div>
 
+  <footer class="global-footer">
+    <p>Learn more about <a href="https://www.adventuresinpharma.com" target="_blank">Adventures In Pharma</a> conference</p>
+  </footer>
+
 <script>
 // Note: reverse === true when a “strongly disagree” response is interpreted as an AI-positive stance.
 
@@ -450,14 +454,14 @@
 
     function shareOnLinkedIn(persona) {
       const quizUrl = window.location.href;
-      const imageUrl = `${window.location.origin}/${persona.image}`;
-      const message = `I just discovered I'm a ${persona.name} in the Pharma AI Mindset Quiz! 🚀
+      const message = `I just discovered my pharma AI mindset – I'm like ${persona.name}! 🤖
+
+Think you're more cautious or more progressive than me? Take the quiz and compare your mindset 👇
 
 Discover your pharma AI mindset and get an exclusive discount for Adventures In Pharma (1 July, London): ${quizUrl}
+`;
 
-#AI #Pharma #AdventuresInPharma`;
-      
-      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}&image=${encodeURIComponent(imageUrl)}`;
+      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}`;
       window.open(linkedInUrl, '_blank');
     }
 
