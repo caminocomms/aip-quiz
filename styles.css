@@ -32,7 +32,7 @@ h1 {
   border-radius: 10px;
   max-width: 800px;
   margin: 0 auto;
-  min-height: auto;
+  min-height: 600px;
   box-shadow: 0 4px 6px rgba(45, 54, 72, 0.1);
   position: relative;
   overflow: hidden;
@@ -42,11 +42,9 @@ h1 {
   display: none;
   padding: 2rem;
   box-sizing: border-box;
-  position: absolute;
   width: 100%;
-  top: 0;
-  left: 0;
   min-height: 100%;
+  overflow-y: auto;
 }
 
 .question-page.active {
@@ -359,6 +357,8 @@ button.secondary:hover:not(:disabled) {
 
   .quiz-container {
     margin: 0;
+    min-height: auto;
+    overflow: visible;
   }
 
   .question-page {
@@ -460,7 +460,7 @@ button.secondary:hover:not(:disabled) {
 
   .persona-image {
     width: 100%;
-    max-width: 400px;
+    max-width: 250px;
     height: auto;
   }
 
@@ -542,6 +542,8 @@ button.secondary:hover:not(:disabled) {
 
   .quiz-container {
     margin: 0;
+    min-height: auto;
+    overflow: visible;
   }
 
   .question-page {
@@ -577,7 +579,7 @@ button.secondary:hover:not(:disabled) {
 
   .persona-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 200px;
     height: auto;
   }
 
@@ -822,7 +824,7 @@ button.secondary:hover:not(:disabled) {
   color: var(--aip-navy-blue);
   font-size: 1rem;
   line-height: 1.5;
-  text-align: center;
+  text-align: left;
   font-style: italic;
 }
 

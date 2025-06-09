@@ -231,19 +231,7 @@
 
     // Function to adjust container height to content
     function adjustContainerHeight() {
-      const activePage = document.querySelector('.question-page.active');
-      const container = document.querySelector('.quiz-container');
-      
-      if (activePage && container) {
-        // Temporarily make it visible to measure
-        activePage.style.position = 'static';
-        activePage.style.visibility = 'hidden';
-        const height = activePage.offsetHeight;
-        activePage.style.position = 'absolute';
-        activePage.style.visibility = 'visible';
-        
-        container.style.height = height + 'px';
-      }
+      // Simple - just let it flow naturally
     }
 
     function showQuestion(questionNum, direction = 'forward') {
@@ -801,6 +789,11 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
       document.getElementById('welcome-page').classList.add('active');
       adjustContainerHeight();
     }
+
+    // Handle window resize to adjust layout
+    window.addEventListener('resize', function() {
+      adjustContainerHeight();
+    });
   </script>
 </body>
 </html>
