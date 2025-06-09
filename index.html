@@ -17,20 +17,21 @@
       
       <div class="question-page" id="welcome-page">
         <div class="welcome-content">
-          <h1>Measure your pharma AI mindset</h1>
+          <h1>Measure your AI mindset</h1>
           <p class="welcome-intro">You don't need to code. You don't need to prompt like a pro.</p>
-          <p class="welcome-intro">But if you're curious about AI in pharma — we built something for you.</p>
+          <p class="welcome-intro">But if you're curious about AI in pharma, we've built this for you.</p>
+          <p class="welcome-intro">Compared with your peers, are your views overly cautious, or far too reckless?</p>
           
           <div class="welcome-highlight">
-            <p class="welcome-arrow">👉 Take 2 minutes to discover your pharma AI mindset</p>
+            <p class="welcome-arrow">👉 Take 2 minutes to discover your pharma AI mindset.</p>
           </div>
           
           <div class="welcome-benefits">
             <p>You'll get:</p>
             <ul>
               <li>Your pharma AI mindset profile</li>
-              <li>A discount code for Adventures In Pharma</li>
-              <li>A chance to win a free ticket</li>
+              <li>A discount code for Adventures In Pharma conference</li>
+              <li>A social-ready image to share your result (and show off a little)</li>
             </ul>
           </div>
           
@@ -57,36 +58,53 @@
 
       <div class="question-page results-celebration" id="results-page">
         <div class="question">
-          <div class="persona-image-container">
-            <img id="persona-image" src="" alt="" class="persona-image">
-          </div>
-          
-          <h2 id="persona-title" style="text-align: center;">You're [Persona Name]!</h2>
-          
-          <p class="persona-explanation" id="persona-explanation">
-            As <strong id="persona-name-repeat">[Persona Name]</strong>, your responses show...
-          </p>
-
-          <div class="ai-spectrum">
-            <div class="spectrum-title">Pharma AI mindset spectrum</div>
-            <div class="spectrum-container">
-              <div class="spectrum-indicator" id="spectrum-indicator">YOU</div>
+          <div class="results-layout">
+            <div class="persona-image-container">
+              <img id="persona-image" src="" alt="" class="persona-image">
             </div>
-            <div class="spectrum-labels">
-              <span>Cautious mindset</span>
-              <span>Balanced mindset</span>
-              <span>Progressive mindset</span>
+            
+            <div class="persona-content">
+              <h2 id="persona-title">You're [Persona Name]!</h2>
+              
+              <p class="persona-explanation" id="persona-explanation">
+                As <strong id="persona-name-repeat">[Persona Name]</strong>, your responses show...
+              </p>
+
+              <div class="ai-spectrum">
+                <div class="spectrum-title">Pharma AI mindset spectrum</div>
+                <div class="spectrum-container">
+                  <div class="spectrum-indicator" id="spectrum-indicator">YOU</div>
+                </div>
+                <div class="spectrum-labels">
+                  <span>Cautious</span>
+                  <span>Balanced</span>
+                  <span>Progressive</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="discount-section">
-            <p class="discount-label">Your exclusive discount code:</p>
-            <div class="discount-code" id="discount-code">[PERSONACODE]</div>
-            <p class="discount-amount">Save £200 on your ticket!</p>
+
+
+          <div class="share-box">
+            <h3>Share your mindset</h3>
+            <div class="share-preview">
+              <img id="share-preview-image" src="" alt="Share preview" class="share-preview-img">
+            </div>
+            <button class="download-image-btn" id="download-image">Download to Share</button>
+            <button class="share-linkedin" id="share-linkedin">Post to LinkedIn</button>
           </div>
-          
+
           <div class="conference-promo">
-            <h3>Ready to level up your AI adventure?</h3>
+
+         <h3>Ready to level up your AI adventure?</h3>
+
+            <div class="discount-section">
+              <p class="discount-label">Your exclusive discount code:</p>
+              <div class="discount-code" id="discount-code">[PERSONACODE]</div>
+              <p class="discount-amount">Save £200 on your ticket!</p>
+            </div>
+            
             <p>Join 80+ pharma professionals exploring AI's real-world impact at Adventures In Pharma.</p>
             <p class="event-details">📅 1st July 2025 | 📍 The Brewery, London</p>
             
@@ -94,11 +112,7 @@
               Claim Your Spot at Adventures In Pharma
             </a>
           </div>
-          
-          <div class="social-share">
-            <p>Share your AI adventure profile:</p>
-            <button class="share-linkedin" id="share-linkedin">Share on LinkedIn</button>
-          </div>
+
           
           <button type="button" id="restart-btn" onclick="location.reload()">Take Quiz Again</button>
         </div>
@@ -342,7 +356,7 @@
       const resultsPage = document.getElementById('results-page');
       const confettiCount = 60;
       const centerX = resultsPage.offsetWidth / 2;
-      const centerY = resultsPage.offsetHeight / 2;
+      const centerY = resultsPage.offsetHeight * 0.25; // Move up to 25% from top instead of center
       
       const shapes = ['', 'rectangle', 'square', 'triangle'];
       
@@ -385,37 +399,43 @@
         name: 'M.A.C.-Bot',
         code: 'MACBOT',
         explanation: 'You\'re like M.A.C.-Bot. Their mindset favors thoughtful, evidence-based approaches to AI adoption. They prioritize understanding fundamentals and proven results over chasing trends.',
-        image: ''
+        image: 'characters/mac.png',
+        shareImage: 'sharegraphics/aip_im_mac.png'
       },
       'nova': {
         name: 'Nova',
         code: 'NOVA',
         explanation: 'You\'re like Nova. Her mindset combines curiosity about AI\'s potential with healthy skepticism. She prefers observation and analysis before commitment, balancing optimism with realistic assessment.',
-        image: ''
+        image: 'characters/nova.png',
+        shareImage: 'sharegraphics/aip_im_nova.png'
       },
       'groc': {
         name: 'Groc',
         code: 'GROC',
         explanation: 'You\'re like Groc. Their mindset balances optimism about AI\'s future with practical implementation concerns. They recognize potential while prioritizing preparation and risk management.',
-        image: ''
+        image: 'characters/groc.png',
+        shareImage: 'sharegraphics/aip_im_groc.png'
       },
       'jetpackjim': {
         name: 'Jetpack Jim',
         code: 'JETPACKJIM',
         explanation: 'You\'re like Jetpack Jim. His mindset is enthusiastic about AI\'s transformative potential in pharma. He favors quick adoption for competitive advantage while maintaining professional and ethical standards.',
-        image: ''
+        image: 'characters/jim.png',
+        shareImage: 'sharegraphics/aip_im_jim.png'
       },
       'vega': {
         name: 'Vega Callisto',
         code: 'VEGA',
         explanation: 'You\'re like Vega Callisto. Her mindset is highly optimistic about AI\'s revolutionary potential. She views AI as fundamentally transforming pharmaceutical operations, from R&D to patient care.',
-        image: ''
+        image: 'characters/vega.png',
+        shareImage: 'sharegraphics/aip_im_vega.png'
       },
       'dangerousdan': {
         name: 'Dangerous Dan',
         code: 'DANGEROUSDAN',
         explanation: 'You\'re like Dangerous Dan. His mindset fully embraces AI as revolutionary for pharmaceuticals. He views AI adoption as essential for competitive advantage and readily embraces cutting-edge technologies.',
-        image: ''
+        image: 'characters/dan.png',
+        shareImage: 'sharegraphics/aip_im_dan.png'
       }
     };
 
@@ -423,21 +443,54 @@
       if (score <= 16) return personas.macbot;
       if (score <= 33) return personas.nova;
       if (score <= 50) return personas.groc;
-      if (score <= 67) return personas.jetpackjim;
-      if (score <= 84) return personas.vega;
+      if (score <= 65) return personas.jetpackjim;
+      if (score <= 80) return personas.vega;
       return personas.dangerousdan;
     }
 
     function shareOnLinkedIn(persona) {
       const quizUrl = window.location.href;
+      const imageUrl = `${window.location.origin}/${persona.image}`;
       const message = `I just discovered I'm a ${persona.name} in the Pharma AI Mindset Quiz! 🚀
 
 Discover your pharma AI mindset and get an exclusive discount for Adventures In Pharma (1 July, London): ${quizUrl}
 
 #AI #Pharma #AdventuresInPharma`;
       
-      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}`;
+      const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}&text=${encodeURIComponent(message)}&image=${encodeURIComponent(imageUrl)}`;
       window.open(linkedInUrl, '_blank');
+    }
+
+    async function downloadPersonaImage(persona) {
+      try {
+        // Fetch the image as blob to force download
+        const response = await fetch(persona.shareImage);
+        const blob = await response.blob();
+        
+        // Create object URL from blob
+        const url = window.URL.createObjectURL(blob);
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${persona.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}-mindset.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up object URL
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error('Download failed:', error);
+        // Fallback to direct link
+        const link = document.createElement('a');
+        link.href = persona.shareImage;
+        link.download = `${persona.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}-mindset.png`;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }
 
     // Function to detect device type
@@ -535,7 +588,7 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           // Skip directly to results with specified score
           setTimeout(() => {
             const persona = getPersonaFromScore(score);
-            showResults(score, persona);
+            showResults(score, persona, true);
           }, 100);
           return true;
         }
@@ -544,7 +597,68 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
     }
 
     // Extracted results display function
-    function showResults(score, persona) {
+    function showResults(score, persona, skipLoading = false) {
+      if (skipLoading) {
+        // Skip loading animation and go directly to results
+        document.querySelectorAll('.question-page').forEach(page => {
+          page.classList.remove('active');
+        });
+        document.getElementById('results-page').classList.add('active');
+        
+        // Start celebrations immediately
+        setTimeout(() => {
+          createConfetti();
+          
+          // Update persona content
+          document.getElementById('persona-image').src = persona.image;
+          document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
+          document.getElementById('share-preview-image').src = persona.shareImage;
+          document.getElementById('share-preview-image').alt = `${persona.name} share image`;
+          document.getElementById('persona-title').textContent = `Your pharma AI mindset is ${persona.name}!`;
+          document.getElementById('persona-name-repeat').textContent = persona.name;
+          document.getElementById('persona-explanation').innerHTML = `${persona.explanation}`;
+          document.getElementById('discount-code').textContent = persona.code;
+          
+          // Position spectrum indicator based on score
+          const spectrumPosition = score; // 0-100
+          document.getElementById('spectrum-indicator').style.left = `${spectrumPosition}%`;
+          
+          // Add LinkedIn sharing functionality
+          document.getElementById('share-linkedin').onclick = () => shareOnLinkedIn(persona);
+          
+          // Add download image functionality
+          document.getElementById('download-image').onclick = () => downloadPersonaImage(persona);
+          
+          // Setup discount code copy functionality
+          setupDiscountCodeCopy();
+          
+          // Adjust container height for results
+          setTimeout(() => {
+            adjustContainerHeight();
+          }, 100);
+          
+          // Show content with animations
+          setTimeout(() => {
+            const elementsToShow = ['persona-title', 'persona-description', 'persona-explanation'];
+            elementsToShow.forEach((id, index) => {
+              setTimeout(() => {
+                const el = document.getElementById(id);
+                if (el) {
+                  el.style.opacity = '0';
+                  el.style.transform = 'translateY(20px)';
+                  el.style.transition = 'all 0.5s ease';
+                  setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                  }, 100);
+                }
+              }, index * 300);
+            });
+          }, 300);
+        }, 100);
+        return;
+      }
+      
       // Show loading page first
       document.querySelectorAll('.question-page').forEach(page => {
         page.classList.remove('active');
@@ -563,6 +677,8 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           // Update persona content
           document.getElementById('persona-image').src = persona.image;
           document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
+          document.getElementById('share-preview-image').src = persona.shareImage;
+          document.getElementById('share-preview-image').alt = `${persona.name} share image`;
           document.getElementById('persona-title').textContent = `Your pharma AI mindset is ${persona.name}!`;
           document.getElementById('persona-name-repeat').textContent = persona.name;
           document.getElementById('persona-explanation').innerHTML = `${persona.explanation}`;
@@ -574,6 +690,12 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           
           // Add LinkedIn sharing functionality
           document.getElementById('share-linkedin').onclick = () => shareOnLinkedIn(persona);
+          
+          // Add download image functionality
+          document.getElementById('download-image').onclick = () => downloadPersonaImage(persona);
+          
+          // Setup discount code copy functionality
+          setupDiscountCodeCopy();
           
           // Adjust container height for results
           setTimeout(() => {
@@ -600,6 +722,65 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           }, 300);
         }, 500);
       }, 3000);
+    }
+
+    // Discount code click handler for copying to clipboard
+    function setupDiscountCodeCopy() {
+      const discountCodeElement = document.getElementById('discount-code');
+      if (discountCodeElement) {
+        discountCodeElement.addEventListener('click', async function() {
+          const originalText = this.textContent;
+          
+          try {
+            await navigator.clipboard.writeText(originalText);
+            
+            // Change text to "Copied!" with smooth transition
+            this.style.transition = 'opacity 0.2s ease';
+            this.style.opacity = '0';
+            
+            setTimeout(() => {
+              this.textContent = 'Copied!';
+              this.style.opacity = '1';
+            }, 200);
+            
+            // Fade back to original text after 2 seconds
+            setTimeout(() => {
+              this.style.opacity = '0';
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.style.opacity = '1';
+              }, 200);
+            }, 2000);
+            
+          } catch (err) {
+            console.error('Failed to copy text: ', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = originalText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            // Show feedback even if clipboard API fails
+            this.style.transition = 'opacity 0.2s ease';
+            this.style.opacity = '0';
+            
+            setTimeout(() => {
+              this.textContent = 'Copied!';
+              this.style.opacity = '1';
+            }, 200);
+            
+            setTimeout(() => {
+              this.style.opacity = '0';
+              setTimeout(() => {
+                this.textContent = originalText;
+                this.style.opacity = '1';
+              }, 200);
+            }, 2000);
+          }
+        });
+      }
     }
 
     // Initialize
