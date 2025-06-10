@@ -84,7 +84,7 @@
               <h2 id="persona-title">You're [Persona Name]!</h2>
               
               <p class="persona-explanation" id="persona-explanation">
-                As <strong id="persona-name-repeat">[Persona Name]</strong>, your responses show...
+                Your responses show...
               </p>
 
               <div class="ai-spectrum">
@@ -423,43 +423,49 @@
     const personas = {
       'macbot': {
         name: 'M.A.C.-Bot',
+        mindsetType: 'skeptic',
         code: 'MACBOT',
-        explanation: 'You\'re like M.A.C.-Bot. Their mindset favours thoughtful, evidence-based approaches to AI adoption. They prioritise understanding fundamentals and proven results over chasing trends.',
+        explanation: 'Your pharma AI mindset is skeptic. Like M.A.C.-Bot, you favour thoughtful, evidence-based approaches to AI adoption. You prioritise understanding fundamentals and proven results over chasing trends.',
         image: 'characters/mac.png',
         shareImage: 'sharegraphics/aip_im_mac.png'
       },
       'nova': {
         name: 'Nova',
+        mindsetType: 'observer',
         code: 'NOVA',
-        explanation: 'You\'re like Nova. Her mindset combines curiosity about AI\'s potential with healthy scepticism. She prefers observation and analysis before commitment, balancing optimism with realistic assessment.',
+        explanation: 'Your pharma AI mindset is observer. Like Nova, you combine curiosity about AI\'s potential with healthy scepticism. You prefer observation and analysis before commitment, balancing optimism with realistic assessment.',
         image: 'characters/nova.png',
         shareImage: 'sharegraphics/aip_im_nova.png'
       },
       'groc': {
         name: 'Groc',
+        mindsetType: 'realist',
         code: 'GROC',
-        explanation: 'You\'re like Groc. Their mindset balances optimism about AI\'s future with practical implementation concerns. They recognise potential while prioritising preparation and risk management.',
+        explanation: 'Your pharma AI mindset is realist. Like Groc, you balance optimism about AI\'s future with practical implementation concerns. You recognise potential while prioritising preparation and risk management.',
         image: 'characters/groc.png',
         shareImage: 'sharegraphics/aip_im_groc.png'
       },
       'jetpackjim': {
         name: 'Jetpack Jim',
+        mindsetType: 'enthusiast',
         code: 'JETPACKJIM',
-        explanation: 'You\'re like Jetpack Jim. His mindset is enthusiastic about AI\'s transformational potential in pharma. He favors quick adoption for competitive advantage while maintaining professional and ethical standards.',
+        explanation: 'Your pharma AI mindset is enthusiast. Like Jetpack Jim, you are enthusiastic about AI\'s transformational potential in pharma. You favor quick adoption for competitive advantage while maintaining professional and ethical standards.',
         image: 'characters/jim.png',
         shareImage: 'sharegraphics/aip_im_jim.png'
       },
       'vega': {
         name: 'Vega Callisto',
+        mindsetType: 'optimist',
         code: 'VEGA',
-        explanation: 'You\'re like Vega Callisto. Her mindset is highly optimistic about AI\'s revolutionary potential. She views AI as fundamentally transforming pharmaceutical operations, from R&D to patient care.',
+        explanation: 'Your pharma AI mindset is optimist. Like Vega Callisto, you are highly optimistic about AI\'s revolutionary potential. You view AI as fundamentally transforming pharmaceutical operations, from R&D to patient care.',
         image: 'characters/vega.png',
         shareImage: 'sharegraphics/aip_im_vega.png'
       },
       'dangerousdan': {
         name: 'Dangerous Dan',
+        mindsetType: 'progressive',
         code: 'DANGEROUSDAN',
-        explanation: 'You\'re like Dangerous Dan. His mindset fully embraces AI as revolutionary for pharmaceuticals. He views AI adoption as essential for competitive advantage and readily embraces cutting-edge technologies.',
+        explanation: 'Your pharma AI mindset is progressive. Like Dangerous Dan, you fully embrace AI as revolutionary for pharmaceuticals. You view AI adoption as essential for competitive advantage and readily embrace cutting-edge technologies.',
         image: 'characters/dan.png',
         shareImage: 'sharegraphics/aip_im_dan.png'
       }
@@ -483,7 +489,7 @@
       const textarea = document.getElementById('share-textarea');
       const copyButton = document.getElementById('copy-text');
       const quizUrl = window.location.href;
-      const message = `I just discovered my pharma AI mindset – I'm like ${persona.name}!
+      const message = `I just discovered my pharma AI mindset – I'm an AI ${persona.mindsetType}!
 
 Think you're more cautious or more progressive than me? Take the quiz and compare your mindset 👇
 
@@ -677,8 +683,7 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
           document.getElementById('share-preview-image').src = persona.shareImage;
           document.getElementById('share-preview-image').alt = `${persona.name} share image`;
-          document.getElementById('persona-title').textContent = `Your pharma AI mindset is ${persona.name}!`;
-          document.getElementById('persona-name-repeat').textContent = persona.name;
+          document.getElementById('persona-title').textContent = `You're an AI ${persona.mindsetType}!`;
           document.getElementById('persona-explanation').innerHTML = `${persona.explanation}`;
           document.getElementById('discount-code').textContent = persona.code;
           
@@ -745,8 +750,7 @@ Discover your pharma AI mindset and get an exclusive discount for Adventures In 
           document.getElementById('persona-image').alt = `${persona.name} - AI Adventure Profile`;
           document.getElementById('share-preview-image').src = persona.shareImage;
           document.getElementById('share-preview-image').alt = `${persona.name} share image`;
-          document.getElementById('persona-title').textContent = `Your pharma AI mindset is ${persona.name}!`;
-          document.getElementById('persona-name-repeat').textContent = persona.name;
+          document.getElementById('persona-title').textContent = `You're an AI ${persona.mindsetType}!`;
           document.getElementById('persona-explanation').innerHTML = `${persona.explanation}`;
           document.getElementById('discount-code').textContent = persona.code;
           
